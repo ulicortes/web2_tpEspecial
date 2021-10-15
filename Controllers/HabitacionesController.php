@@ -22,7 +22,7 @@ class HabitacionesController {
         $usuario = $this->authy->checkLoggedIn();
         $habitaciones = $this->model->traerHabitaciones(null);
         $hoteles = $this->hotelModel->traerHoteles();
-        $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, "Habitaciones");
+        $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles);
     }
 
     function showHabitacionesPorHotel($id) {
