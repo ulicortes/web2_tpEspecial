@@ -11,12 +11,8 @@ class HabitacionesView {
     }
 
     function listarHabitaciones($habitaciones, $usuario, $hoteles) {
-        if(isset($usuario)) {
-            $this->smarty->assign('usuario', $usuario);
-        }
-        else {
-            $this->smarty->assign('usuario', null);
-        }
+       
+        $this->smarty->assign('usuario', $usuario);        
 
         if(isset($habitaciones[0]->Nombre_hotel)){
             $this->smarty->assign('titulo', $habitaciones[0]->Nombre_hotel);
@@ -60,6 +56,11 @@ class HabitacionesView {
 
     function showHabitacionesLocation() {
         header("Location: ".BASE_URL."habitaciones");
+    }
+
+    function mostrarerror($error){
+        $this->smarty->assign('error', $error);
+        $this->smarty->display('templates/errores.tpl');
     }
 }
 

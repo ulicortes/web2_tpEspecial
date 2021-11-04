@@ -1,0 +1,65 @@
+<?php
+/* Smarty version 3.1.39, created on 2021-11-04 00:22:56
+  from 'C:\xampp\htdocs\proyectos\WEB2\tpespecialFinal\tpespecial\templates\editHoteles.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.39',
+  'unifunc' => 'content_618319d094b475_28746481',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '2813f6892c4f5c32626025f6d43375dc8ab5eb9f' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\proyectos\\WEB2\\tpespecialFinal\\tpespecial\\templates\\editHoteles.tpl',
+      1 => 1634323451,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:templates/header.tpl' => 1,
+    'file:templates/footer.tpl' => 1,
+  ),
+),false)) {
+function content_618319d094b475_28746481 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
+<form class="row g-3" action="editar-hotel/<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="inputNombre" name="nombre" value="<?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
+">
+  </div>
+  <div class="col-md-12">
+    <label for="inputPassword4" class="form-label">Direccion</label>
+    <input type="text" class="form-control" id="inputDireccion" name="direccion" value="<?php echo $_smarty_tpl->tpl_vars['direccion']->value;?>
+">
+  </div>
+  <div class="col-6">
+    <label for="inputAddress" class="form-label">Telefono</label>
+    <input type="number" class="form-control" id="inputTelefono" name="telefono" value="<?php echo $_smarty_tpl->tpl_vars['telefono']->value;?>
+">
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Puntuacion</label>
+    <input type="text" class="form-control" id="inputPuntuacion" name="puntuacion" value="<?php echo $_smarty_tpl->tpl_vars['puntuacion']->value;?>
+">
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Cantidad de habitaciones</label>
+    <input type="text" class="form-control" id="inputPuntuacion" name="cantHabitaciones" value="<?php echo $_smarty_tpl->tpl_vars['cantHabitaciones']->value;?>
+">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Editar hotel</button>
+  </div>
+</form>
+
+<?php $_smarty_tpl->_subTemplateRender('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
+<?php }
+}

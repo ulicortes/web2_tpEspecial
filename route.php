@@ -4,6 +4,7 @@
     require_once './Controllers/HabitacionesController.php';
     require_once './Controllers/HomeController.php';
     require_once './Controllers/LoginController.php';
+    require_once './Controllers/UsuariosController.php';
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -18,6 +19,7 @@
     $hotelesController = new HotelesController;
     $habitacionesController = new HabitacionesController;
     $loginController = new LoginController;
+    $usuarioscontroller= new UsuariosController;
 
     $params = explode('/', $action);
 
@@ -58,11 +60,7 @@
         case 'agregar-habitacion': 
             $habitacionesController->createHabitacion();
             break;
-
-        case 'edit': 
-            $habitacionesController->deleteHabitacion($params[1]);
-            break;
-
+        
         case 'form': 
             $hotelesController->editarHotel($params[1]);
             break;
@@ -109,7 +107,20 @@
 
         case 'buscar-hotel':
             $hotelesController->buscarHotel();
-            break;            
+            break;  
+
+        case 'modificarpermiso':
+            $usuarioscontroller-> modificarPermisos($params[1]);
+            break;  
+
+        case 'verusuarios':
+            $usuarioscontroller->verusuarios();
+            break;  
+
+        case 'delete-usuario':
+            $usuarioscontroller->deleteusuario($params[1]);
+            break;  
+            
         default: 
             echo 'Error 404 not found';
             break;

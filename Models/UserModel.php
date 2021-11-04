@@ -19,4 +19,18 @@
 
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
+        function getusuarios(){
+            $sentencia = $this->db->prepare('SELECT * FROM usuarios ');
+            $sentencia->execute();
+            $usuarios =$sentencia->fetchAll(PDO::FETCH_OBJ);
+            return $usuarios;
+        }
+        function BorrarUsuario($id){
+            $sentencia = $this->db->prepare("DELETE FROM usuarios WHERE id_usuario=?");
+            $sentencia->execute(array($id));
+        }
+        function cambiarRol($id, $admin){
+            $sentencia = $this->db->prepare("UPDATE usuarios SET usuarios.Admin=? WHERE id_usuario=?");
+            $sentencia->execute(array( $admin, $id));
+        }
     }

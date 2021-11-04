@@ -41,7 +41,13 @@
               <li>
                 <a class="nav-link active" aria-current="page">Hola {$smarty.session.usuario}</a>
               </li>
+                {if $smarty.session.role =="1"}
+                  <li>
+                    <a class="nav-link active" aria-current="page" href="verusuarios">Ver usuarios</a>
+                  </li>
+                {/if}
             {/if}
+
         </ul> 
         <form class="d-flex" action="buscar-hotel" method="POST">
             <input class="form-control me-2" type="search" name="buscar" aria-label="Search">

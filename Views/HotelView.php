@@ -46,4 +46,9 @@ class HotelView {
     function showHotelesLocation() {
         header("Location: ".BASE_URL."hoteles");
     }
-}
+    
+    function mostrarerror($error){
+        $this->smarty->assign('error', $error);
+        $this->smarty->display('templates/errores.tpl');
+    }
+} 

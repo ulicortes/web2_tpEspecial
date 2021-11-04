@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-15 00:42:20
+/* Smarty version 3.1.39, created on 2021-11-04 01:15:48
   from 'C:\xampp\htdocs\proyectos\WEB2\tpespecialFinal\tpespecial\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6168b24c7491c6_17642596',
+  'unifunc' => 'content_61832634b3f859_16211089',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'adf3db9680e97f4e931d2931d0cabcbf6dc7f79a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\WEB2\\tpespecialFinal\\tpespecial\\templates\\header.tpl',
-      1 => 1634247222,
+      1 => 1635984944,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6168b24c7491c6_17642596 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61832634b3f859_16211089 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +66,13 @@ function content_6168b24c7491c6_17642596 (Smarty_Internal_Template $_smarty_tpl)
                 <a class="nav-link active" aria-current="page">Hola <?php echo $_SESSION['usuario'];?>
 </a>
               </li>
+                <?php if ($_SESSION['role'] == "1") {?>
+                  <li>
+                    <a class="nav-link active" aria-current="page" href="verusuarios">Ver usuarios</a>
+                  </li>
+                <?php }?>
             <?php }?>
+
         </ul> 
         <form class="d-flex" action="buscar-hotel" method="POST">
             <input class="form-control me-2" type="search" name="buscar" aria-label="Search">

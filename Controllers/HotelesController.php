@@ -26,47 +26,72 @@ class HotelesController {
     }
     
     function showHoteles() {
-        $usuario = $this->authy->checkLoggedIn();
+        $usuario = $this->authy->esAdmin();   
         $hoteles = $this->model->traerHoteles();        
         $this->view->mostrarHoteles($hoteles, $usuario);
     }
 
     function showHotel($id) {
-        $usuario = $this->authy->checkLoggedIn();
+        $usuario = $this->authy->esAdmin();   
         $hotel = $this->model->traerHotelPorId($id);
         $this->view->mostrarHotelPorId($hotel, $usuario);
     }
     
     function createHotel() {
-        $this->authy->estaLogueado();
-        $this->model->insertHotel($_POST['nombre'], $_POST['direccion'], $_POST['telefono'], $_POST['puntuacion'], $_POST['cant-habitaciones']);
-        $this->view->showHotelesLocation();
+        if($this->authy->esAdmin()){
+            if(isset($_POST['nombre'])&&isset($_POST['direccion'])&&isset($_POST['telefono'])&&isset($_POST['puntuacion'])&&isset($_POST['cant-habitaciones'])){
+                $this->model->insertHotel($_POST['nombre'], $_POST['direccion'], $_POST['telefono'], $_POST['puntuacion'], $_POST['cant-habitaciones']);
+                $this->view->showHotelesLocation();
+            }
+            else{
+                $this->view->mostrarerror("Complete todos los parametros para crear un hotel");
+            }
+        }       
+       
     }
 
     function deleteHotel($id) {
-        $this->authy->estaLogueado();
-        $this->model->delete_Hotel($id);
-        $this->view->showHotelesLocation();
+        if($this->authy->esAdmin()){
+            $this->model->delete_Hotel($id);
+            $this->view->showHotelesLocation();
+        }
     }
 
     function editarHotel($id) {
-        $this->authy->estaLogueado();
-        $hotel = $this->model->traerHotelPorId($id);
-        $this->view->mostrarEditForm($hotel);
+        if($this->authy->esAdmin()){ 
+            $hotel = $this->model->traerHotelPorId($id);
+            if($hotel){
+                $this->view->mostrarEditForm($hotel);
+            }
+          else{
+            $this->view->mostrarerror("No existe el hotel que quiere editar"); 
+          }
+        }
     }
 
     function enviarHotelEditado($id) {
-        $this->authy->estaLogueado();
-        $this->model->editarHotel($_POST['nombre'], $_POST['direccion'], $_POST['telefono'], $_POST['puntuacion'], $_POST['cantHabitaciones'], $id);
-        $this->view->showHotelesLocation();
+        if($this->authy->esAdmin()){ 
+            if(isset($_POST['nombre'])&&isset($_POST['direccion'])&&isset($_POST['telefono'])&&isset($_POST['puntuacion'])&&isset($_POST['cant-habitaciones'])){
+                $this->model->editarHotel($_POST['nombre'], $_POST['direccion'], $_POST['telefono'], $_POST['puntuacion'], $_POST['cantHabitaciones'], $id);
+                $this->view->showHotelesLocation();
+            }
+            else{
+                $this->view->mostrarerror("Complete todos los parametros para editar el hotel");
+            }
+        }
     }
 
     function buscarHotel() {
         if(isset($_POST['buscar'])) {
-            $usuario = $this->authy->checkLoggedIn();
+            $usuario = $this->authy->esAdmin();
             $palabra = $_POST['buscar'];
             $hotel = $this->model->buscar($palabra);
-            $this->view->mostrarHoteles($hotel, $usuario);
+            if($hotel){
+                $this->view->mostrarHoteles($hotel, $usuario);
+            }
+            else{
+                $this->view->mostrarerror("No se encontraron hoteles con los datos que busca");
+            }
         }
     }
 }

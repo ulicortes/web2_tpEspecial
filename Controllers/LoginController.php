@@ -28,7 +28,11 @@
         function enviarRegistro() {
             if(!empty($_POST['nombre']) && !empty($_POST['apellido'] && !empty($_POST['email']) && !empty($_POST['usuario']) && !empty($_POST['contraseña']))){
                 $this->model->sendRegistro($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['usuario'], $_POST['contraseña']);
-                $this->view->mostrarLoginForm('Su registro se ha completado con exito, utilice los datos cargados previamente para iniciar sesion');
+               // $this->view->mostrarLoginForm('Su registro se ha completado con exito, utilice los datos cargados previamente para iniciar sesion');
+               session_start();
+               $_SESSION["usuario"] = $_POST['usuario']; 
+               $_SESSION["role"] = 0;                   
+               $this->homeView->showHome();  
             }
         }
 
@@ -42,12 +46,16 @@
                 if ($user && password_verify($password, ($user->Contraseña))) {
     
                     session_start();
-                    $_SESSION["usuario"] = $user->Usuario;                    
+                    $_SESSION["usuario"] = $user->Usuario;  
+                    $_SESSION["role"] = $user->Admin;               
                     $this->homeView->showHome();                   
 
                 } else {
                     $this->view->mostrarLoginForm("El nombre del usuario o la contraseña son incorrectos, intentelo nuevamente");
                 }
+            }
+            else{
+                $this->view->mostrarLoginForm("Falta ingresar algun dato, intentelo nuevamente");
             }
         }
 
