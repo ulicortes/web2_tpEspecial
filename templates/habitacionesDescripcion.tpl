@@ -21,4 +21,29 @@
         {/if}
     </div>
 </div>
+
+<div>
+    <h3 class="titulos">Comentarios</h3>
+    <div id="comentarios">
+        <p>lorem</p>
+    </div>
+</div>
+  {if !empty($smarty.session.usuario)}
+    <div>
+    <form action="api/comentarios" method="POST">            
+                         
+                <div class="col-md-8">
+                      <label class="form-label">Comentario</label>
+                      <textarea rows="4" class="form-control" id="inputcomentario" name="comentario"></textarea>
+                </div>        
+                <input type="number" class="form-control" id="inputidhabitacion" value="{$habitacion->ID_HABITACION}" name="ID_HABITACION" hidden> 
+                <input type="number" class="form-control" id="inputidusuario" value ="($smarty.session.id)" name="id_usuario" hidden>            
+               
+                <div class="col-md-12 my-2">
+                    <button type="submit" class="btn btn-success">Enviar comentario</button>
+                </div>
+              </form>
+    </div>
+    {/if}
+
 {include file='templates/footer.tpl'}

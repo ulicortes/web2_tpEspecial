@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-04 01:30:03
+/* Smarty version 3.1.39, created on 2021-11-06 14:02:55
   from 'C:\xampp\htdocs\proyectos\WEB2\tpespecialFinal\tpespecial\templates\usuarios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6183298b9645a8_16973835',
+  'unifunc' => 'content_61867cffe0abc7_45023562',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9aa92148c892fd565aa96d4b731ad0a77df05651' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\WEB2\\tpespecialFinal\\tpespecial\\templates\\usuarios.tpl',
-      1 => 1635985801,
+      1 => 1636203772,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6183298b9645a8_16973835 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61867cffe0abc7_45023562 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="d-flex flex-column align-items-center">
@@ -42,12 +42,13 @@ $_smarty_tpl->tpl_vars['usuario']->do_else = false;
                         <?php } else { ?>
                              NO Administrador
                         <?php }?>
-                    </h4>             
-                    <a href="delete-usuario/<?php echo $_smarty_tpl->tpl_vars['usuario']->value->id_usuario;?>
+                    </h4>  
+                    <?php if ($_smarty_tpl->tpl_vars['usuario']->value->Usuario != $_SESSION['usuario']) {?>                            
+                        <a href="delete-usuario/<?php echo $_smarty_tpl->tpl_vars['usuario']->value->id_usuario;?>
 "><button class="btn btn-success">Borrar</button></a>
-                    <a href="modificarpermiso/<?php echo $_smarty_tpl->tpl_vars['usuario']->value->id_usuario;?>
+                        <a href="modificarpermiso/<?php echo $_smarty_tpl->tpl_vars['usuario']->value->id_usuario;?>
 "><button class="btn-editar btn btn-success">Cambiar permiso</button></a>
-               
+                    <?php }?>
               </div>    
             <?php
 }

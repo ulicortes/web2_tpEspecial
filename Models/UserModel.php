@@ -14,11 +14,18 @@
         }
 
         function obtenerUsuario($usuario) {
-            $sentencia = $this->db->prepare('SELECT * FROM usuarios WHERE usuario = ?');
+            $sentencia = $this->db->prepare('SELECT * FROM usuarios WHERE Usuario = ?');
             $sentencia->execute([$usuario]);
 
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
+        function obtenerUsuarioporID($usuario) {
+            $sentencia = $this->db->prepare('SELECT * FROM usuarios WHERE id_usuario = ?');
+            $sentencia->execute([$usuario]);
+
+            return $sentencia->fetch(PDO::FETCH_OBJ);
+        }
+        //hacer la misma funcion solo con obtener usuario con id
         function getusuarios(){
             $sentencia = $this->db->prepare('SELECT * FROM usuarios ');
             $sentencia->execute();
@@ -30,7 +37,7 @@
             $sentencia->execute(array($id));
         }
         function cambiarRol($id, $admin){
-            $sentencia = $this->db->prepare("UPDATE usuarios SET usuarios.Admin=? WHERE id_usuario=?");
+            $sentencia = $this->db->prepare("UPDATE usuarios SET Admin=? WHERE id_usuario=?");
             $sentencia->execute(array( $admin, $id));
         }
     }

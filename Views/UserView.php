@@ -16,5 +16,10 @@ class UserView {
     function mostrarusarios($usuarios){
         $this->smarty->assign('usuarios', $usuarios);
         $this->smarty->display('templates/usuarios.tpl');
+        
+    }
+
+    function usuariosLocation(){
+        header("Location: ".BASE_URL."verusuarios");
     }
 }

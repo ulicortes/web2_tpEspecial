@@ -10,10 +10,11 @@
                         {else}
                              NO Administrador
                         {/if}
-                    </h4>             
-                    <a href="delete-usuario/{$usuario->id_usuario}"><button class="btn btn-success">Borrar</button></a>
-                    <a href="modificarpermiso/{$usuario->id_usuario}"><button class="btn-editar btn btn-success">Cambiar permiso</button></a>
-               
+                    </h4>  
+                    {if $usuario->Usuario != $smarty.session.usuario }                            
+                        <a href="delete-usuario/{$usuario->id_usuario}"><button class="btn btn-success">Borrar</button></a>
+                        <a href="modificarpermiso/{$usuario->id_usuario}"><button class="btn-editar btn btn-success">Cambiar permiso</button></a>
+                    {/if}
               </div>    
             {/foreach}
         </div>

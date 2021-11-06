@@ -47,8 +47,9 @@
     
                     session_start();
                     $_SESSION["usuario"] = $user->Usuario;  
-                    $_SESSION["role"] = $user->Admin;               
-                    $this->homeView->showHome();                   
+                    $_SESSION["role"] = $user->Admin;   
+                    $_SESSION["id"] = $user->id_usuario;          
+                    header("Location: ".BASE_URL."home");                 
 
                 } else {
                     $this->view->mostrarLoginForm("El nombre del usuario o la contraseña son incorrectos, intentelo nuevamente");

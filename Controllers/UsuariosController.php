@@ -18,18 +18,16 @@ class UsuariosController{
     function modificarPermisos($id){
         $usuarioadmin= $this->authy->esAdmin();  
         if($usuarioadmin){
-            $usuario= $this->model->obtenerUsuario($id);
-          
+            $usuario= $this->model->obtenerUsuarioporID($id);
+         
             if($usuario->Admin == 1){
                 $this->model->cambiarRol($id, 0);
             }
             else if ($usuario->Admin == 0) {
                 $this->model->cambiarRol($id, 1);
             }
-            /*$usuarios= $this->model->getusuarios();
-            if($usuarios){
-                $this->view->mostrarusarios($usuarios);
-            }*/
+            $this->view->usuariosLocation();
+
         }
         else {
             $this->view->mostrarerror("A esta seccion solo pueden acceder administradores");   
@@ -44,20 +42,18 @@ class UsuariosController{
             }
            else{
             $this->view->mostrarerror("No se encontraron usuarios");   
-           }
+           } 
         }
         else {
             $this->view->mostrarerror("A esta seccion solo pueden acceder administradores");   
         }
     }
+   
     function deleteusuario($id){
         $usuarioadmin= $this->authy->esAdmin();  
         if($usuarioadmin){
             $this->model->BorrarUsuario($id);
-            $usuarios= $this->model->getusuarios();
-            if($usuarios){
-                $this->view->mostrarusarios($usuarios);
-            }
+            $this->view->usuariosLocation();
         }
         else {
             $this->view->mostrarerror("A esta seccion solo pueden acceder administradores");   
