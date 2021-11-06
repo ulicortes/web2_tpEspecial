@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 15-10-2021 a las 00:29:30
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.4.23
+-- Host: 127.0.0.1
+-- Generation Time: Nov 06, 2021 at 04:08 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hotelesdb`
+-- Database: `hotelesdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `habitaciones`
+-- Table structure for table `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `ID_HABITACION` int(11) DEFAULT NULL,
+  `comentario` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `habitaciones`
 --
 
 CREATE TABLE `habitaciones` (
@@ -39,7 +52,7 @@ CREATE TABLE `habitaciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `habitaciones`
+-- Dumping data for table `habitaciones`
 --
 
 INSERT INTO `habitaciones` (`ID_HOTEL`, `ID_HABITACION`, `Nombre_habitacion`, `Descripcion`, `Cantidad_camas`, `Capacidad`, `Precio`, `Disponible`) VALUES
@@ -48,15 +61,12 @@ INSERT INTO `habitaciones` (`ID_HOTEL`, `ID_HABITACION`, `Nombre_habitacion`, `D
 (1, 14, 'Bungalow Deluxe', 'Vista a la ciudad, 20m^2, desayuno incluido', 2, 3, 31221, 0),
 (7, 16, 'Habitación doble', '1 cama King size, para no fumadores', 1, 2, 9296, 1),
 (2, 17, 'Estudio Estándar', '30 m², Balcón, Vistas a un lugar de interés, Aire acondicionado, Baño privado, TV de pantalla plana, Minibar, WiFi gratis', 2, 3, 12338, 0),
-(2, 18, 'Estudio Triple Estándar', 'Estudio con balcón, microondas y minibar. Incluye 1 cama doble y 1 sofá cama o 2 camas individuales y 1 sofá cama.', 3, 4, 14507, 1),
-(8, 19, 'Habitacion Doble', 'Habitación con aire acondicionado, calefacción, minibar y baño privado.', 1, 2, 9000, 0),
-(9, 20, 'Family Suite', 'lorem lorem lorem lorem ', 4, 6, 40000, 0),
-(9, 21, 'Suite simple', 'Descripcion ramdom para llenar espacio y que la descripcion sea grande', 1, 2, 20000, 1);
+(2, 18, 'Estudio Triple Estándar', 'Estudio con balcón, microondas y minibar. Incluye 1 cama doble y 1 sofá cama o 2 camas individuales y 1 sofá cama.', 3, 4, 14507, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hoteles`
+-- Table structure for table `hoteles`
 --
 
 CREATE TABLE `hoteles` (
@@ -69,7 +79,7 @@ CREATE TABLE `hoteles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `hoteles`
+-- Dumping data for table `hoteles`
 --
 
 INSERT INTO `hoteles` (`ID_HOTEL`, `Nombre_hotel`, `Direccion`, `Telefono`, `Puntuacion`, `Cant_habitaciones`) VALUES
@@ -83,73 +93,104 @@ INSERT INTO `hoteles` (`ID_HOTEL`, `Nombre_hotel`, `Direccion`, `Telefono`, `Pun
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
-  `id_usuarios` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `Nombre_del_usuario` varchar(60) NOT NULL,
   `Apellido_del_usuario` varchar(60) NOT NULL,
   `Email_del_usuario` varchar(200) NOT NULL,
   `Usuario` varchar(20) NOT NULL,
-  `Contraseña` varchar(150) NOT NULL
+  `Contraseña` varchar(150) NOT NULL,
+  `Admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuarios`, `Nombre_del_usuario`, `Apellido_del_usuario`, `Email_del_usuario`, `Usuario`, `Contraseña`) VALUES
-(7, 'Ulises', 'Cortes', 'uli@cortes.com', 'uli', '$2y$10$rl9UCkPLjuxjBytLkhXQ5uFkeCAlaZE8Gem0O6jRmmhwgO9e8h3FW'),
-(8, 'user', 'test', 'user@test.com', 'user', '$2y$10$Ti5oIEX5P32ap1pmMlHlE.Q8EYn0lTKEgYu6UXiEXQnGxYqMPd8SK'),
-(9, 'user', 'test', 'user@test.com', 'user', '$2y$10$1AfyjT4L2EffW48j9pYEWe9hVu.6/PML5gxoTQmdfy59NGgt/bsxe'),
-(10, 'Usuario prueba', 'prueba', 'user@prueba.com', 'prueba', '$2y$10$Kr2uINKHoQy1tI.4LBkdi.OZp5enQP5dlvu6InyegK3SdwJx2F.BC'),
-(11, 'Lionel', 'Messi', 'leo@messi', 'lio', '$2y$10$EGzYP3idhPAWd5EiSnjx7u5lXw2jyg5WLyQ3wo1Ds/H/M7nfQ0cuC'),
-(12, 'nombre', 'apellido', 'nombre@apellido', 'name', '$2y$10$WS3AQh4Hqa9/6LedN0Hq2eMy6AV57yz858J154cI9jft3Rjad3nwG');
+INSERT INTO `usuarios` (`id_usuario`, `Nombre_del_usuario`, `Apellido_del_usuario`, `Email_del_usuario`, `Usuario`, `Contraseña`, `Admin`) VALUES
+(12, 'nombre', 'apellido', 'nombre@apellido', 'name', '$2y$10$WS3AQh4Hqa9/6LedN0Hq2eMy6AV57yz858J154cI9jft3Rjad3nwG', 0),
+(13, 'Lucia', 'martinez', 'luciamartinezcuesta@gmail.com', 'lumartinez9', '$2y$10$8s0UQg2np8UdNAblduOOF.NDvhnHZ0eT1xJ7h5jkj/QfTszUqKT6m', 0),
+(18, 'lu', 'ss', 'lu@gmaul.com', 'LUMART', '$2y$10$hoVvrgpksEzr0uKGJaUzb.oeSEYMoQGGPoj7Q8cafIVlSIXegdU7S', 1),
+(19, 'LU', 'NART', 'L@GMAIL.COM', 'LU', '$2y$10$XG2C9759piPqtvdYdtukz.ucyp2fhL5C3DygupNtH6ABpw5g4otdK', 0);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `habitaciones`
+-- Indexes for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `ID_HOTEL` (`ID_HABITACION`),
+  ADD KEY `id_Usuario` (`id_usuario`);
+
+--
+-- Indexes for table `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  ADD PRIMARY KEY (`ID_HABITACION`);
+  ADD PRIMARY KEY (`ID_HABITACION`),
+  ADD KEY `ID_HOTEL` (`ID_HOTEL`);
 
 --
--- Indices de la tabla `hoteles`
+-- Indexes for table `hoteles`
 --
 ALTER TABLE `hoteles`
   ADD PRIMARY KEY (`ID_HOTEL`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuarios`);
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `habitaciones`
+-- AUTO_INCREMENT for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `habitaciones`
 --
 ALTER TABLE `habitaciones`
   MODIFY `ID_HABITACION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT de la tabla `hoteles`
+-- AUTO_INCREMENT for table `hoteles`
 --
 ALTER TABLE `hoteles`
   MODIFY `ID_HOTEL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`ID_HABITACION`) REFERENCES `habitaciones` (`ID_HABITACION`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `habitaciones`
+--
+ALTER TABLE `habitaciones`
+  ADD CONSTRAINT `habitaciones_ibfk_1` FOREIGN KEY (`ID_HOTEL`) REFERENCES `hoteles` (`ID_HOTEL`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
