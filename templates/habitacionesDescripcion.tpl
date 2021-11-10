@@ -25,12 +25,12 @@
 <div>
     <h3 class="titulos">Comentarios</h3>
     <div id="comentarios">
-        <p>lorem</p>
+       
     </div>
 </div>
   {if !empty($smarty.session.usuario)}
     <div>
-    <form action="api/comentarios" method="POST">            
+    <form action="api/comentarios/{$habitacion->ID_HABITACION}" method="POST">            
                          
                 <div class="col-md-8">
                       <label class="form-label">Comentario</label>
@@ -45,5 +45,5 @@
               </form>
     </div>
     {/if}
-
+<script src="Javascript/apicomentarios.js" type="text/javascript"></script>
 {include file='templates/footer.tpl'}

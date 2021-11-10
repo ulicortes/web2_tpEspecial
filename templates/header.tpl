@@ -47,6 +47,9 @@
                   </li>
                 {/if}
             {/if}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="busqueda-avanzada">Busqueda avanzada</a>
+            </li>
 
         </ul> 
         <form class="d-flex" action="buscar-hotel" method="POST">

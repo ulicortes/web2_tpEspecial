@@ -50,4 +50,19 @@ class HabitacionesModel {
         
         $sentencia->execute(array($id_hotel, $nombre, $descripcion, $cant_camas, $capacidad, $precio, $disponible, $id));
     }
+
+    function buscarHabitaciones($criterio){
+        $order_query=[
+            "precioascendente" => "ORDER BY Precio ASC",
+            "preciodescendente" => "ORDER BY Precio DESC",
+            "disponible" => "ORDER BY Disponible"
+        ];
+        
+        $query=$order_query[$criterio];
+           
+        $sentencia = $this->db->prepare("SELECT * FROM habitaciones  $query");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+    
 }

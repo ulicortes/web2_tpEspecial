@@ -1,6 +1,7 @@
 {include file='templates/header.tpl'}
 <div class="d-flex flex-column align-items-center">
     <h1 class="titulos">{$titulo}</h1>
+    {include file='templates/formbusquedaavanzada.tpl'}
     {if $habitaciones|is_array}
         <div class="w-50 p-3 text-center">
             {foreach from=$habitaciones item=$habitacion}

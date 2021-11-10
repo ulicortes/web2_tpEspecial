@@ -82,4 +82,17 @@ class HabitacionesController {
         }
 
     }
+    function buscarhabitaciones(){
+        if(isset($_POST["busqueda"])){
+            $criterio = $_POST["busqueda"];
+            $usuario = $this->authy->esAdmin();        
+            $habitaciones = $this->model->buscarHabitaciones($criterio);
+            $hoteles = $this->hotelModel->traerHoteles();
+            $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles);
+        }
+    }
+    // function mostrarformbusqueda(){
+    //     $usuario = $this->authy->esAdmin();   
+    //     $this->view->mostrarformavanzado($usuario);
+    // }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-06 15:55:19
+/* Smarty version 3.1.39, created on 2021-11-10 23:20:18
   from 'C:\xampp\htdocs\proyectos\WEB2\tpespecialFinal\tpespecial\templates\habitacionesDescripcion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61869757d5f9a2_07294477',
+  'unifunc' => 'content_618c45a217e467_12421617',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '35b45b212ea833fd5c4fa7881f10b2dd016c45da' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\WEB2\\tpespecialFinal\\tpespecial\\templates\\habitacionesDescripcion.tpl',
-      1 => 1636210517,
+      1 => 1636582697,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_61869757d5f9a2_07294477 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618c45a217e467_12421617 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="d-flex flex-column align-items-center mt-5 mb-5">
@@ -59,12 +59,13 @@ $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cach
 <div>
     <h3 class="titulos">Comentarios</h3>
     <div id="comentarios">
-        <p>lorem</p>
+       
     </div>
 </div>
   <?php if (!empty($_SESSION['usuario'])) {?>
     <div>
-    <form action="api/comentarios" method="POST">            
+    <form action="api/comentarios/<?php echo $_smarty_tpl->tpl_vars['habitacion']->value->ID_HABITACION;?>
+" method="POST">            
                          
                 <div class="col-md-8">
                       <label class="form-label">Comentario</label>
@@ -79,8 +80,10 @@ $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cach
                 </div>
               </form>
     </div>
-    <?php }?>
-
+    <?php }
+echo '<script'; ?>
+ src="Javascript/apicomentarios.js" type="text/javascript"><?php echo '</script'; ?>
+>
 <?php $_smarty_tpl->_subTemplateRender('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }
 }

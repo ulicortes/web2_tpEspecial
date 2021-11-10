@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-04 01:15:48
+/* Smarty version 3.1.39, created on 2021-11-10 23:37:22
   from 'C:\xampp\htdocs\proyectos\WEB2\tpespecialFinal\tpespecial\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61832634b3f859_16211089',
+  'unifunc' => 'content_618c49a2d66b76_02069587',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'adf3db9680e97f4e931d2931d0cabcbf6dc7f79a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\WEB2\\tpespecialFinal\\tpespecial\\templates\\header.tpl',
-      1 => 1635984944,
+      1 => 1636583822,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61832634b3f859_16211089 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618c49a2d66b76_02069587 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +72,9 @@ function content_61832634b3f859_16211089 (Smarty_Internal_Template $_smarty_tpl)
                   </li>
                 <?php }?>
             <?php }?>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="busqueda-avanzada">Busqueda avanzada</a>
+            </li>
 
         </ul> 
         <form class="d-flex" action="buscar-hotel" method="POST">

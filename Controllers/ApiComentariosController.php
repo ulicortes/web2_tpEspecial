@@ -12,9 +12,13 @@ class ApiTaskController{
         $this->view = new ApiComentariosView();
     }
 
-    function obtenerTareas(){
-        $tareas = $this->model->getTasks();
-        return $this->view->response($tareas, 200);
+    function obtenerComentarios(){
+        $idHabitacion=  = $params[":IDhabitacion"];
+        $comentarios = $this->model->getComentarios($idHabitacion);
+        if($comentarios){
+            return $this->view->response($comentarios, 200);
+        }
+        else $this->view->response('No hay comentarios para esta habitacion'), 404);
     }
 
     function obtenerTarea($params = null) {
@@ -40,12 +44,13 @@ class ApiTaskController{
     }
 
     function insertarComentario($params = null) {
+       
         // obtengo el body del request (json)
         $body = $this->getBody();
 
         // TODO: VALIDACIONES -> 400 (Bad Request)
 
-        $id = $this->model->insertComentario($body->id_usuario, $body->comentario, $body->ID_HABITACION);
+        $id = $this->model->insertComentario($body->id_usuario, $body->comentario,  $body->ID_HABITACION);
         if ($id != 0) {
             $this->view->response("La tarea se insertó con el id=$id", 200);
         } else {
