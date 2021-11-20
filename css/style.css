@@ -7,6 +7,42 @@
     font-weight: bolder;
     font-style: italic;
 }
+.radiocomentario{
+    display: none;
+}
+.puntaje:hover{
+    color:#198754;
+}
+
+.puntaje:hover ~ .puntaje{
+    color:#198754;
+}
+
+input[type = "radio"]:checked ~ .puntaje{
+    color:#198754;
+}
+
+.comentarios_div{
+    padding: 2.5% 20%;
+}
+
+form.comentarios_div{
+    text-align: center;
+}
+
+.clasificacion{
+    text-align: left;
+    direction: rtl; /*Direccion right to left (derecha a izquierda */
+    unicode-bidi: bidi-override; /* bidi de bidireccional */
+    text-align: center;
+
+}
+.titulocomentario{
+    color: #198754;
+}
+.color{
+    color: #198754;
+}
 .titulo h5{
     font-size: 4rem;    
 }

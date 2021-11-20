@@ -64,5 +64,11 @@ class HabitacionesModel {
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function buscarHabitacion($criterio1, $criterio2){
+        $sentencia = $this->db->prepare("SELECT * FROM habitaciones WHERE Capacidad>=? AND Precio<=?");
+        $sentencia->execute(array($criterio1, $criterio2));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
     
 }

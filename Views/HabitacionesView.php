@@ -10,9 +10,10 @@ class HabitacionesView {
         $this->smarty = new Smarty();
     }
 
-    function listarHabitaciones($habitaciones, $usuario, $hoteles) {
+    function listarHabitaciones($habitaciones, $usuario, $hoteles, $criterio=0) {
        
         $this->smarty->assign('usuario', $usuario);        
+        $this->smarty->assign('criterio', $criterio);        
       
         if(isset($habitaciones[0]->Nombre_hotel)){
             $this->smarty->assign('titulo', $habitaciones[0]->Nombre_hotel);

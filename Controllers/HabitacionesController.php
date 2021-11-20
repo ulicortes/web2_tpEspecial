@@ -82,17 +82,38 @@ class HabitacionesController {
         }
 
     }
-    function buscarhabitaciones(){
+    function ordenarhabitaciones(){
         if(isset($_POST["busqueda"])){
             $criterio = $_POST["busqueda"];
             $usuario = $this->authy->esAdmin();        
             $habitaciones = $this->model->buscarHabitaciones($criterio);
             $hoteles = $this->hotelModel->traerHoteles();
-            $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles);
+            $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, $criterio);
         }
     }
-    // function mostrarformbusqueda(){
-    //     $usuario = $this->authy->esAdmin();   
-    //     $this->view->mostrarformavanzado($usuario);
-    // }
+
+    function buscarhabitaciones(){
+        
+        if(isset($_POST["preciomax"]) || isset($_POST["capminima"])){
+            $precio = $_POST["preciomax"];
+            $capacidad = $_POST["capminima"];
+            $usuario = $this->authy->esAdmin();
+            if($precio == null){
+                $precio= PHP_INT_MAX;
+                $habitaciones = $this->model->buscarHabitacion($capacidad, $precio);
+            }
+            if($capacidad == null){
+                $habitaciones = $this->model->buscarHabitacion('', $precio);
+            }
+            $hoteles = $this->hotelModel->traerHoteles();
+            $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, $capacidad);
+        }
+        // if(isset()){
+        //     $criterio = $_POST["busqueda"];
+        //     $usuario = $this->authy->esAdmin();        
+        //     $habitaciones = $this->model->buscarHabitaciones($criterio);
+        //     $hoteles = $this->hotelModel->traerHoteles();
+        //     $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, $criterio);
+        // }
+    }
 }

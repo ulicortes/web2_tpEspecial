@@ -76,8 +76,12 @@
         case 'form-habitacion':        
             $habitacionesController->editHabitacion($params[1]);
             break;
+
+        case 'ordenar':  
+            $habitacionesController->ordenarhabitaciones();
+            break;
+
         case 'busquedaavanzada':  
-            
             $habitacionesController->buscarhabitaciones();
             break;
 

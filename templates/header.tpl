@@ -6,8 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {* <link href="css/fontawesome/css/all.css" rel="stylesheet" type="text/css"> *}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" 
+      crossorigin="anonymous">
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
+    <script defer href="css/fontawesome/js/all.js"></script> 
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light -sm|-md|-lg|-xl|-xxl">
@@ -47,9 +53,6 @@
                   </li>
                 {/if}
             {/if}
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="busqueda-avanzada">Busqueda avanzada</a>
-            </li>
 
         </ul> 
         <form class="d-flex" action="buscar-hotel" method="POST">
