@@ -55,31 +55,20 @@ class ApiComentariosController{
        
        
         $body = $this->getBody();
-        $idHabitacion = $_POST['ID_HABITACION'];
-       
-        $id = $this->model->insertComentario($body->id_usuario, $body->ID_HABITACION, $body->comentario, $body->estrellas);
+        if(!empty($body->comentario) && !empty($body->estrellas)){
+            $id = $this->model->insertComentario($body->id_usuario, $body->ID_HABITACION, $body->comentario, $body->estrellas);
 
-        if ($id != 0) {
-            $this->view->response("El comentario id=$id", 200);
-            header('Location: ' .BASE_URL. 'habitacion/'.$idHabitacion);
-        } else {
-            $this->view->response("El comentario no se pudo insertar", 500);
+            if ($id != 0) {
+                $this->view->response("El comentario id=$id", 200);
+                header('Location: ' .BASE_URL. 'habitacion/'.$body->ID_HABITACION,);
+            } else {
+                $this->view->response("El comentario no se pudo insertar", 500);
+            }
         }
-    }
-
-    function editarComentario($params = null) {
-        $idComentario = $params[':ID'];
-        $body = $this->get_data();
+        else{
+            $this->view->response("Debe ingresar un comentario y un puntaje", 400);
+        }
         
-
-        $comentario = $this->model->getComentario($idComentario);
-
-        if ($comentario) {
-            $this->model->updateComentario($idComentario, $body->id_usuario, $body->ID_HABITACION, $body->comentario, $body->puntaje);
-            $this->view->response("El comentario se actualizó correctamente", 200);
-        } else {
-            return $this->view->response("El comentario con el id=$idComentario no existe", 404);
-        }
     }
 
     private function getBody() {

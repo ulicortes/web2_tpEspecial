@@ -1,9 +1,11 @@
 {include file='templates/header.tpl'}
 <div class="d-flex flex-column align-items-center">
     <h1 class="titulos">{$titulo}</h1>
+    {if !isset($habitaciones[0]->Nombre_hotel)}
     {include file='templates/formbusquedaavanzada.tpl'}
+    {/if}
     {if $habitaciones|is_array}
-        <div class="w-50 p-3 text-center">
+        <div class="p-3 text-center">
             {foreach from=$habitaciones item=$habitacion}
               <div class="my-4">
                 <a href="habitacion/{$habitacion->ID_HABITACION}">
@@ -18,7 +20,7 @@
         </div>
         {if $usuario != ''}
             <h3 class="titulos">Agregar habitacion</h3>
-            <div class="d-flex flex-column align-items-center w-50">
+            <div class="d-flex flex-column align-items-center">
               <form action="agregar-habitacion" method="POST">
                 <div class="row">
                   <label class="form-label">Elegir hotel</label>

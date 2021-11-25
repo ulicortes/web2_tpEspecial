@@ -49,6 +49,7 @@
             <input type="number" class="form-control" id="inputidusuario" value ="{$smarty.session.id}" name="id_usuario" hidden>            
             <div class="col-md-12 my-2">
                 <button type="submit" class="btn btn-success" id="enviarComentario">Enviar comentario</button>
+                <h3 id="error"></h3>
             </div>
             
         </form>

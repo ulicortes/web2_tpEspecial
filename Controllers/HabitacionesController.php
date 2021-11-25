@@ -28,14 +28,24 @@ class HabitacionesController {
     function showHabitacionesPorHotel($id) {
         $usuario = $this->authy->esAdmin();   
         $habitaciones = $this->model->traerHabitaciones($id);
-        $hoteles = $this->hotelModel->traerHoteles($id);   
-        $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles);
+        $hoteles = $this->hotelModel->traerHoteles($id);
+        if($habitaciones){
+            $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles);
+        }
+        else {
+            $this->view->mostrarerror("No hay habitaciones para este hotel");
+        }   
     }
 
     function showHabitacion($id) {
         $usuario = $this->authy->esAdmin();   
         $habitacion = $this->model->traerHabitacionPorId($id);
-        $this->view->mostrarHabitacionPorId($habitacion, $usuario);
+        if($habitacion){
+            $this->view->mostrarHabitacionPorId($habitacion, $usuario);
+        }
+        else {
+            $this->view->mostrarerror("La habitacion solicitada no existe");
+        }
     }
 
     function createHabitacion() {
@@ -50,7 +60,6 @@ class HabitacionesController {
        }
        
     }
-    //hace falta preguntar si el id esta seteado?
     function deleteHabitacion($id) {       
         if($this->authy->esAdmin()){
             $this->model->deleteHabitacion($id);
@@ -106,14 +115,12 @@ class HabitacionesController {
                 $habitaciones = $this->model->buscarHabitacion('', $precio);
             }
             $hoteles = $this->hotelModel->traerHoteles();
-            $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, $capacidad);
+            if(empty($habitaciones)){
+                $this->view->mostrarerror("No existen habitaciones para la busqueda solicitada");
+            }
+            else{
+                $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, $capacidad);
+            }
         }
-        // if(isset()){
-        //     $criterio = $_POST["busqueda"];
-        //     $usuario = $this->authy->esAdmin();        
-        //     $habitaciones = $this->model->buscarHabitaciones($criterio);
-        //     $hoteles = $this->hotelModel->traerHoteles();
-        //     $this->view->listarHabitaciones($habitaciones, $usuario, $hoteles, $criterio);
-        // }
     }
 }

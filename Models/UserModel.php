@@ -25,7 +25,7 @@
 
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
-        //hacer la misma funcion solo con obtener usuario con id
+        
         function getusuarios(){
             $sentencia = $this->db->prepare('SELECT * FROM usuarios ');
             $sentencia->execute();

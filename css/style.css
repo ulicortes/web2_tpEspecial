@@ -14,6 +14,15 @@
     color:#198754;
 }
 
+.contenedorbusquedaavanzada{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_ba{
+    flex-direction: row;
+    align-items: center;
+}
 .puntaje:hover ~ .puntaje{
     color:#198754;
 }
@@ -32,8 +41,8 @@ form.comentarios_div{
 
 .clasificacion{
     text-align: left;
-    direction: rtl; /*Direccion right to left (derecha a izquierda */
-    unicode-bidi: bidi-override; /* bidi de bidireccional */
+    direction: rtl; 
+    unicode-bidi: bidi-override; 
     text-align: center;
 
 }
@@ -71,8 +80,6 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* position: sticky;
-    bottom: 0vh; */
 }
 .mostrar{
     display: none;

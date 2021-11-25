@@ -63,15 +63,5 @@ class HabitacionesView {
         $this->smarty->assign('error', $error);
         $this->smarty->display('templates/errores.tpl');
     }
-
-    // function mostrarformavanzado(){
-    //     if(isset($usuario)) {
-    //         $this->smarty->assign('usuario', $usuario);
-    //     }
-    //     else {
-    //         $this->smarty->assign('usuario', null);
-    //     }
-    //     $this->smarty->display('templates/formbusquedaavanzada.tpl');
-    // }
 }
 

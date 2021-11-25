@@ -1,32 +1,52 @@
 "use strict"
 let api = 'http://localhost/web2_tpEspecial/api';
 
-// let comentariosVue = new Vue({
-//     el: "#comentarios-vue",
-//     data: {
-//         comentarios: []
-//     }
-// });
-let contenedor = document.querySelector("#comentarios");
-
-let form = document.querySelector('#form');
-let btnEnviar = document.querySelector('#enviarComentario');
-btnEnviar.addEventListener('click', (e)=>{
-  // e.preventDefault();
-  let objeto = {
-    'comentario': form.comentario.value,
-    'estrellas' : form.estrellas.value,
-    'ID_HABITACION' : form.ID_HABITACION.value,
-    'id_usuario' : form.id_usuario.value
-  }
-  crearComentario(objeto);
-  // console.log(objeto);
-  // console.log(form.id_usuario.value);
-})
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getComentarios();
 });
+
+let contenedor = document.querySelector("#comentarios");
+let rol = document.querySelector("#rol").value;
+
+if(rol == 0 || rol == 1){
+  let form = document.querySelector('#form');
+  let btnEnviar = document.querySelector('#enviarComentario');
+  btnEnviar.addEventListener('click', (e)=>{
+    e.preventDefault();
+    let objeto = {
+      'comentario': form.comentario.value,
+      'estrellas' : form.estrellas.value,
+      'ID_HABITACION' : form.ID_HABITACION.value,
+      'id_usuario' : form.id_usuario.value
+    }
+    crearComentario(objeto);
+    form.comentario.value = '';
+    form.estrellas.value = undefined;
+  })
+
+  async function crearComentario(body) {
+    let query = await fetch(api + "/comentarios", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
+        if (query.status == 400) {
+          document.querySelector('#error').innerHTML = "Debe ingresar un comentario y un puntaje";
+        }
+        else if (query.ok){
+          console.log(body);
+          contenedor.innerHTML = "";
+          getComentarios();
+        }
+        else {
+          document.querySelector('#error').innerHTML = query.statusText;
+        }
+  }
+}
+
+
+
 async function getComentarios() {
   let response = await fetch(`${api}/comentarios`);
   let comentarios = await response.json();
@@ -35,7 +55,7 @@ async function getComentarios() {
 
 function renderComentarios(comentarios) {
   let habitacion = document.querySelector("#habitacion").value;
-  let rol = document.querySelector("#rol").value;
+  
   for (let comentario of comentarios) {
     if (comentario.ID_HABITACION == habitacion) {
       let div_comentario = document.createElement('div');
@@ -93,21 +113,5 @@ async function eliminarComentario(id) {
     })
 }
 
-async function crearComentario(body) {
-  let query = await fetch(api + "/comentarios", {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(body)
-  })
-    .then(function (query) {
-      if (!query.ok) {
-        console.log("Error");
-      }
-      else {
-        console.log(body);
-        contenedor.innerHTML = "";
-        getComentarios();
-      }
-    })
-}
+
 
