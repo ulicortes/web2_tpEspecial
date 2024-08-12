@@ -1,10 +1,10 @@
 <?php
 
-    require_once './Controllers/HotelesController.php';
-    require_once './Controllers/HabitacionesController.php';
-    require_once './Controllers/HomeController.php';
-    require_once './Controllers/LoginController.php';
-    require_once './Controllers/UsuariosController.php';
+    require_once '/Controllers/HotelesController.php';
+    require_once '/Controllers/HabitacionesController.php';
+    require_once '/Controllers/HomeController.php';
+    require_once '/Controllers/LoginController.php';
+    require_once '/Controllers/UsuariosController.php';
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
