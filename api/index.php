@@ -1,2 +1,2 @@
 <?php
-   echo('HOLA');
+   require __DIR__ . '/../route.php';
