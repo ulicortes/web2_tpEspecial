@@ -1,1 +1,6 @@
 templates_c
+# PHP
+/vendor
+
+# Vercel
+.vercel
