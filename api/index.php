@@ -1,3 +1,5 @@
 <?php
+    require_once '../Controllers/HomeController.php';
 // api/index.php
-phpinfo();
+    $homeController = new HomeController;
+    $homeController->showhome();
