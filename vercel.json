@@ -7,7 +7,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/Controllers/HomeController.php"
+        "dest": "route.php"
       }
     ]
   }
